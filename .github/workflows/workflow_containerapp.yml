@@ -44,7 +44,7 @@ jobs:
 
     - name: Build and Push Image
       run: |
-        az acr login --name microhackregistrymhuser19 --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }} &&
+        az acr login --name microhackregistrymhuser19 &&
         docker build -t microhackregistrymhuser19.azurecr.io/microhackapp:${{ steps.get_tag.outputs.image_tag }} -f Dockerfile . &&
         docker push microhackregistrymhuser19.azurecr.io/microhackapp:${{ steps.get_tag.outputs.image_tag }}
 
@@ -52,8 +52,6 @@ jobs:
       uses: azure/container-apps-deploy-action@v2
       with:
         imageToDeploy: microhackregistrymhuser19.azurecr.io/microhackapp:${{ steps.get_tag.outputs.image_tag }}
-        acrUsername: ${{ secrets.ACR_USERNAME }}
-        acrPassword: ${{ secrets.ACR_PASSWORD }}
         resourceGroup: mhuser19RG
         containerAppEnvironment: microhack-containerappenvironment
         containerAppName: microhack-containerapp
