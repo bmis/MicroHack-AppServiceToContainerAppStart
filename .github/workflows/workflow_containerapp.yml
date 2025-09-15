@@ -54,7 +54,7 @@ jobs:
         imageToDeploy: microhackregistrymhuser19.azurecr.io/microhackapp:${{ steps.get_tag.outputs.image_tag }}
         acrUsername: ${{ secrets.ACR_USERNAME }}
         acrPassword: ${{ secrets.ACR_PASSWORD }}
-        resourceGroup: MicroHack-AppServiceToContainerApp
+        resourceGroup: mhuser19RG
         containerAppEnvironment: microhack-containerappenvironment
         containerAppName: microhack-containerapp
         targetPort: 8080
